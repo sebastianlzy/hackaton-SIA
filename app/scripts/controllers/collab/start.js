@@ -9,6 +9,13 @@
  */
 angular.module('siahackatonApp')
   .controller('StartCtrl', function ($scope, $location) {
+        console.log($location.url());
+
+        $scope.isActive = function (viewLocation) {
+            console.log(viewLocation);
+            var active = (viewLocation === $location.url());
+            return active;
+        };
 
         var absUrl = $location.absUrl();
         console.log(absUrl);
