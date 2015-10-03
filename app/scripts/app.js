@@ -23,17 +23,10 @@ angular
         templateUrl: '../views/collab/main.html',
         controller: 'IndexCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/start', {
+        templateUrl: 'views/start.html',
+        controller: 'StartCtrl'
       })
-      .when('/home', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-
       .otherwise({
         redirectTo: '/'
       });

@@ -79,6 +79,10 @@ body {
     padding-left: 0;
     padding-right: 0;
   }
+  .footer{
+    position: absolute;
+    bottom: 0px;
+  }
   /* Space out the masthead */
   .header {
     margin-bottom: 30px;
@@ -87,4 +91,16 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.message-box{
+  background-color: white;
+  padding: 20px;
+  box-shadow: 4px 5px 10px #BBB;
+  margin-top: 25px;
+
+}
+
+.name{
+  color: #ff35c5;
 }

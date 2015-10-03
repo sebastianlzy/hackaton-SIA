@@ -8,8 +8,10 @@
  * Controller of the siahackatonApp
  */
 angular.module('siahackatonApp')
-  .controller('IndexCtrl', function ($scope) {
+  .controller('IndexCtrl', function ($scope, $location) {
 
+    var absUrl = $location.absUrl();
+    console.log(absUrl);
     var messages = [];
 
     $scope.addMessage = function (message) {
@@ -17,7 +19,7 @@ angular.module('siahackatonApp')
     };
 
     $scope.getMessages = function () {
-      return messages;
+      return messages ;
     };
 
   });
