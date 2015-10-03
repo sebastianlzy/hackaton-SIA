@@ -7,8 +7,16 @@
 <body>
 
 
+
+
+<div class="message-box" id="message-box">
+  <div ng-repeat="message in messages">
+    <span class="name">{{message.name}}</span> : {{message.text}}
+  </div>
+</div>
+
 <form>
-  <div class="form-group">
+  <div class="form-group top-pad-3" >
     <label class="sr-only" for="message">Text</label>
     <input type="text" class="form-control" id="name" placeholder="Type your name here" ng-model="message.name">
   </div>
@@ -19,11 +27,6 @@
   <button type="submit" ng-click="addMessage(message)" class="btn btn-primary btn-raised pull-right">Enter</button>
 </form>
 <div class="clearfix"></div>
-<div class="message-box">
-  <div ng-repeat="message in getMessages()">
-    <span class="name">{{message.name}}</span> : {{message.text}}
-  </div>
-</div>
 
 </body>
 </html>

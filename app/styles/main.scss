@@ -98,8 +98,16 @@ body {
   padding: 20px;
   box-shadow: 4px 5px 10px #BBB;
   margin-top: 25px;
+  height: 200px;
+  overflow: auto;
 
 }
+
+.top-pad-3 {
+  padding-top:30px;
+}
+
+
 
 .name{
   color: #ff35c5;
