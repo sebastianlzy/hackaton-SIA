@@ -6,8 +6,20 @@
 </head>
 <body>
 
-{{awesomeThings}}
 
+<form>
+  <div class="form-group">
+    <label class="sr-only" for="message">Password</label>
+    <input type="text" class="form-control" id="message" placeholder="Type your message here" ng-model="message.text">
+  </div>
+  <button type="submit" ng-click="addMessage(message)" class="btn btn-default">Enter</button>
+</form>
+<hr/>
+<div class="jumbotron">
+  <div ng-repeat="message in getMessages()">
+    {{message}}
+  </div>
+</div>
 
 </body>
 </html>

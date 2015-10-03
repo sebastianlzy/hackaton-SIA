@@ -9,9 +9,15 @@
  */
 angular.module('siahackatonApp')
   .controller('IndexCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+    var messages = [];
+
+    $scope.addMessage = function (message) {
+      messages.push(angular.copy(message));
+    };
+
+    $scope.getMessages = function () {
+      return messages;
+    };
+
   });
