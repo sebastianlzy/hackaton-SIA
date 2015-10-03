@@ -8,21 +8,24 @@
  * Controller of the siahackatonApp
  */
 angular.module('siahackatonApp')
-  .controller('IndexCtrl', function ($scope, $location, $firebaseArray) {
+  .controller('IndexCtrl', function ($scope, $routeParams, $firebaseArray, $timeout) {
 
     var ref = new Firebase("https://siahackaton.firebaseio.com/messages");
-
-    var absUrl = $location.absUrl();
-    console.log(absUrl);
+    $scope.message  = {name : $routeParams['name'] || 'anonymous'};
     $scope.messages = $firebaseArray(ref);
     $scope.addMessage = function (message) {
-
       $scope.messages.$add(angular.copy(message));
     };
 
-    window.setInterval(function() {
-      var elem = document.getElementById('message-box');
-      elem.scrollTop = elem.scrollHeight;
-    }, 100);
+
+    $scope.messages.$loaded(function () {
+      console.log('hello');
+      $timeout(function () {
+        var elem = document.getElementById('message-box');
+        elem.scrollTop = elem.scrollHeight;
+      });
+
+    });
+
 
   });
