@@ -9,7 +9,11 @@
 
 <form>
   <div class="form-group">
-    <label class="sr-only" for="message">Password</label>
+    <label class="sr-only" for="message">Text</label>
+    <input type="text" class="form-control" id="name" placeholder="Type your name here" ng-model="message.name">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="message">Text</label>
     <input type="text" class="form-control" id="message" placeholder="Type your message here" ng-model="message.text">
   </div>
   <button type="submit" ng-click="addMessage(message)" class="btn btn-default">Enter</button>
