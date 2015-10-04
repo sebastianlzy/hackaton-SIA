@@ -31,11 +31,22 @@ angular.module('siahackatonApp')
       addUserColors();
     });
 
-    var postToSkyScanner = function () {
+    var getFromSkyScanner = function (iataCountry, outbound, inbound) {
 
+      var url = 'http://localhost:3000';
+      if (iataCountry !== ''){
+        url = url + '?country=' + iataCountry;
+      }
+      if (outbound !== ''){
+        url = url + '&outbound=' + outbound;
+      }
+      if (inbound !== ''){
+        url = url + '&inbound=' + inbound;
+      }
       $http({
         method: 'GET',
-        url: 'http://localhost:3000',
+        url: url
+
       }).success(function (response) {
         getTopFiveFlights(response);
 
@@ -63,12 +74,9 @@ angular.module('siahackatonApp')
 
     var getTopFiveFlights = function (response) {
       var agents = response['Agents'];
-      var itineraries = response['Itineraries'].slice(0, 2);
-      var that = itineraries;
+      var itineraries = response['Itineraries'].slice(0,6);
       itineraries.forEach(function (itinerary) {
-        var itinerary = itinerary;
         var pricingOptions = itinerary.PricingOptions;
-
         pricingOptions.forEach(function(pricingOption){
           var agentId = pricingOption['Agents'][0];
           var agentName = findAgentName(agents, agentId) || "TigerAir";
@@ -83,9 +91,19 @@ angular.module('siahackatonApp')
     var checkForKeywords = function (text) {
       if (text !== '') {
         if (text.indexOf('KUL') > -1) {
-          postToSkyScanner();
+          var inbound, outbound, startInbound, startOutbound, tempText;
+          if (text.indexOf('from') > -1) {
+            startOutbound = text.search('2015');
+            outbound = text.substring(startOutbound, startOutbound + 10);
+            tempText = text.substring(startOutbound + 10);
+          }
+          if (text.indexOf('to') > -1) {
+             startInbound = tempText.search('2015');
+             inbound = tempText.substring(startInbound, startInbound + 10);
 
+          }
 
+          getFromSkyScanner('KUL', outbound, inbound);
         }
       }
     };
