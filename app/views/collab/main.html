@@ -9,7 +9,8 @@
 
 <div class="message-box" id="message-box">
   <div ng-repeat="message in messages">
-    <span class="name">{{message.name}}</span> : {{message.text}}
+    <span ng-style="{color : usersColor[message.name]}">{{message.name}}</span> :
+    <span >{{message.text}}</span>
   </div>
 </div>
 
@@ -18,8 +19,6 @@
     <i class="mdi-action-perm-identity"></i> <span class="h4">{{message.name}}</span>
   </div>
   <div class="form-group">
-    <label class="sr-only" for="message">Text</label>
-
     <div class="inputs">
       <input type="text" class="form-control floating-label" id="message" data-hint="Write here something cool"
              placeholder="Type your message here" ng-model="message.text">
