@@ -25,7 +25,7 @@ angular
         controller: 'IndexCtrl'
       })
       .when('/start', {
-        templateUrl: 'views/start.html',
+        templateUrl: '../views/collab/start.html',
         controller: 'StartCtrl'
       })
       .otherwise({

@@ -9,6 +9,10 @@
  */
 angular.module('siahackatonApp')
   .controller('IndexCtrl', function ($scope, $routeParams, $firebaseArray, $timeout) {
+    $scope.isActive = function (viewLocation) {
+        var active = (viewLocation === $location.path());
+        return active;
+    };
 
     var ref = new Firebase("https://siahackaton.firebaseio.com/messages");
     $scope.message  = {name : $routeParams['name'] || 'anonymous'};
