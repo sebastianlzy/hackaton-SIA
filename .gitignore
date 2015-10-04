@@ -7,3 +7,5 @@
 .idea/workspace.xml
 .idea/modules.xml
 .idea/.name
+siahackatonserver/node_modules/*
+siahackatonserver/package.json
