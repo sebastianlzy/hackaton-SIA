@@ -48,6 +48,7 @@ angular.module('siahackatonApp')
         url: url
 
       }).success(function (response) {
+        console.log(response);
         getTopFiveFlights(response);
 
       }).error(function (err) {
@@ -58,6 +59,20 @@ angular.module('siahackatonApp')
           });
         }, 2000)
       });
+    };
+
+    var findLeg = function (legs, legId) {
+      var legTime = '';
+      legs.forEach(function (leg) {
+        if(leg['Id'] === legId){
+          legTime =  leg['Departure'] +  " - " + leg['Arrival'];
+        }
+      });
+
+      return legTime;
+
+
+
     };
 
     var findAgentName = function (agents, agentId) {
@@ -74,15 +89,29 @@ angular.module('siahackatonApp')
 
     var getTopFiveFlights = function (response) {
       var agents = response['Agents'];
+      var legs = response['Legs'];
       var itineraries = response['Itineraries'].slice(0,6);
       itineraries.forEach(function (itinerary) {
+        var inboundLeg = itinerary['InboundLegId'];
+        var outboundLeg = itinerary['OutboundLegId'];
+
         var pricingOptions = itinerary.PricingOptions;
         pricingOptions.forEach(function(pricingOption){
           var agentId = pricingOption['Agents'][0];
           var agentName = findAgentName(agents, agentId) || "TigerAir";
+          var inboundLegTime = findLeg(legs, inboundLeg);
+          var outboundLegTime = findLeg(legs, outboundLeg);
           $scope.messages.$add({
             name : 'Flybot',
             text :  agentName + " - " + pricingOption['Price'].toString() + "SGD"
+          });
+          $scope.messages.$add({
+            name : 'Outbound',
+            text :  outboundLegTime
+          });
+          $scope.messages.$add({
+              name : 'Inbound',
+              text :  inboundLegTime
           });
         });
       });
