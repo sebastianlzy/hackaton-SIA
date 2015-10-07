@@ -10,10 +10,10 @@
     <hr>
 
     <div class="form-group" name="buddy">
-        <input type="text" class="form-control floating-label" id="buddyName" data-hint="Nicknames allowed too" placeholder="Type your travel buddy name here" ng-model="buddy.name">
+        <input type="text" class="form-control floating-label" id="buddyName" placeholder="Type your travel buddy name here" ng-model="buddy.name">
     </div>
     <div class="form-group">
-        <input type="number" class="form-control" id="buddyNumber" placeholder="Type your buddy's number here" ng-model="buddy.number">
+        <input type="number" class="form-control floating-label" id="buddyNumber" placeholder="Type your buddy's number here" ng-model="buddy.number">
     </div>
     <div class="form-group">
         <input type="text" class="form-control" id="buddyMessage" placeholder="Here is your buddy url" ng-model="buddy.url" disabled>
@@ -23,5 +23,6 @@
     <button class="btn btn-primary btn-raised" type="submit" ng-click="addBuddy(buddy)">Add buddy</button>
     <br/>
     <button class="btn btn-info btn-raised" >Invite Now</button>
+
 </body>
 </html>

@@ -19,6 +19,8 @@ angular
     'firebase'
   ])
   .config(function ($routeProvider) {
+    $.material.options.autofill = false
+    $.material.init();
     $routeProvider
       .when('/', {
         templateUrl: '../views/collab/main.html',
