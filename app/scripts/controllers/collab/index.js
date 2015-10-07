@@ -182,6 +182,45 @@ angular.module('siahackatonApp')
 
           }
           getFromSkyScanner('KUL', outbound, inbound);
+        }else if (text.indexOf('BKK') > -1) {
+          var inbound, outbound, startInbound, startOutbound, tempText;
+          if (text.indexOf('from') > -1) {
+            startOutbound = text.search('2015');
+            outbound = text.substring(startOutbound, startOutbound + 10);
+            tempText = text.substring(startOutbound + 10);
+          }
+          if (text.indexOf('to') > -1) {
+            startInbound = tempText.search('2015');
+            inbound = tempText.substring(startInbound, startInbound + 10);
+
+          }
+          getFromSkyScanner('BKK', outbound, inbound);
+        }else if (text.indexOf('PEK') > -1) {
+          var inbound, outbound, startInbound, startOutbound, tempText;
+          if (text.indexOf('from') > -1) {
+            startOutbound = text.search('2015');
+            outbound = text.substring(startOutbound, startOutbound + 10);
+            tempText = text.substring(startOutbound + 10);
+          }
+          if (text.indexOf('to') > -1) {
+            startInbound = tempText.search('2015');
+            inbound = tempText.substring(startInbound, startInbound + 10);
+
+          }
+          getFromSkyScanner('PEK', outbound, inbound);
+        }else if (text.indexOf('ES') > -1) {
+          var inbound, outbound, startInbound, startOutbound, tempText;
+          if (text.indexOf('from') > -1) {
+            startOutbound = text.search('2015');
+            outbound = text.substring(startOutbound, startOutbound + 10);
+            tempText = text.substring(startOutbound + 10);
+          }
+          if (text.indexOf('to') > -1) {
+            startInbound = tempText.search('2015');
+            inbound = tempText.substring(startInbound, startInbound + 10);
+
+          }
+          getFromSkyScanner('ES', outbound, inbound);
         }
         if (text.indexOf('ADD') > -1) {
           var selectedOption = text.substring(text.indexOf('ADD')+4, text.indexOf('ADD')+5);
