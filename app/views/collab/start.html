@@ -5,8 +5,11 @@
   <title></title>
 </head>
 <body>
-
     <div class="form-group" name="buddy">
+        <input type="text" class="form-control floating-label" id="chatOwner" placeholder="Type in your name here" ng-model="buddy.chatOwner">
+    </div>
+
+    <div class="form-group">
         <input type="text" class="form-control floating-label" id="buddyName" placeholder="Type your travel buddy name here" ng-model="buddy.name">
     </div>
     <div class="form-group">
@@ -16,8 +19,9 @@
         <input type="text" class="form-control" id="buddyMessage" placeholder="Here is your buddy url" ng-model="buddy.url" disabled>
     </div>
 
-    <button class="btn btn-primary btn-raised" type="submit" ng-click="generateBuddyUrl(buddy)">Generate URL</button>
     <button class="btn btn-primary btn-raised" type="submit" ng-click="addBuddy(buddy)">Invite buddy to chat</button>
+    <button class="btn btn-primary btn-raised" type="submit" ng-click="generateBuddyUrl(buddy)">Go to chat now!</button>
+
     <br/>
 
 </body>
