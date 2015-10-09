@@ -8,6 +8,7 @@
  *
  * Main module of the application.
  */
+
 angular
   .module('siahackatonApp', [
     'ngAnimate',
@@ -19,8 +20,7 @@ angular
     'firebase'
   ])
   .config(function ($routeProvider) {
-    $.material.options.autofill = false
-    $.material.init();
+
     $routeProvider
       .when('/chat', {
         templateUrl: '../views/collab/main.html',
