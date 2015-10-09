@@ -18,18 +18,25 @@ angular.module('siahackatonApp')
     var selectedResults = [];
 
 
+
     $scope.message = { name: $routeParams['name'] || 'anonymous' };
     $scope.messages = $firebaseArray(ref);
     $scope.usersColor = {};
     $scope.voteNow = false;
 
     $scope.messages.$watch(function() {
-      if($scope.messages[$scope.messages.length -1].text.indexOf("VOTING") > -1){
-        console.log("YOU ALL NEED TO VOTE!");
+      var lastMessage = $scope.messages[$scope.messages.length -1];
+      if(lastMessage && lastMessage.text.indexOf("VOTING") > -1){
         $scope.voteNow = true;
         $scope.messages.$add({
           name : 'Flybot',
-          text : 'You need to vote now!'
+          text : 'You need to vote now! Please choose a number '
+        });
+        selectedResults.forEach(function (selectedResult, index) {
+          console.log(selectedResult);
+          addResultToMessage(index, selectedResult['agentName'],
+            selectedResult['pricingOption'], selectedResult['outboundLegTime'],
+            selectedResult['inboundLegTime']);
         });
       }
     });
@@ -43,8 +50,8 @@ angular.module('siahackatonApp')
           });
         }else{
           $scope.messages.$add({
-            name : 'Flybot',
-            text : 'You have voted for ' + message.text
+            name : $routeParams['name'],
+            text : 'VOTED for ' + message.text
           });
           $scope.voteNow = false;
         }
@@ -89,7 +96,7 @@ angular.module('siahackatonApp')
         $timeout(function () {
           $scope.messages.$add({
             name : 'Flybot',
-            text : '1130 - 1230 flight to KUL at 130 SGD tomorrow'
+            text : 'We are experiencing some difficulty. Please bear with us'
           });
         }, 2000)
       });
@@ -124,33 +131,51 @@ angular.module('siahackatonApp')
 
     };
 
-
+    var i = iValue();
     var getTopFiveFlights = function (response) {
       var agents = response['Agents'];
       var legs = response['Legs'];
-      var itineraries = response['Itineraries'].slice(0,3);
+      var itineraries = response['Itineraries'].slice(0,2);
+      results = [];
+      i.setI(0);
       itineraries.forEach(function (itinerary) {
         var inboundLeg = itinerary['InboundLegId'];
         var outboundLeg = itinerary['OutboundLegId'];
-
         var pricingOptions = itinerary.PricingOptions;
-        pricingOptions.forEach(function(pricingOption, index){
+        pricingOptions.forEach(function(pricingOption){
           var agentId = pricingOption['Agents'][0];
           var agentName = findAgentName(agents, agentId) || "TigerAir";
           var inboundLegTime = findLeg(legs, inboundLeg);
           var outboundLegTime = findLeg(legs, outboundLeg);
           results.push({
-            'id' : angular.copy(index),
+            'id' : i.getI(),
             'agentName' : agentName,
             'pricingOption' : pricingOption,
             'outboundLegTime' : outboundLegTime,
             'inboundLegTime' : inboundLegTime
           });
-          addResultToMessage(index, agentName, pricingOption, outboundLegTime, inboundLegTime);
+
+          addResultToMessage(i.getI(), agentName, pricingOption, outboundLegTime, inboundLegTime);
+          i.increaseI();
         });
       });
       console.log(results);
     };
+
+    function iValue(){
+      var i = 0;
+      return {
+        getI : function () {
+          return i;
+        },
+        setI : function (j) {
+          i = j;
+        },
+        increaseI : function () {
+          i = i + 1;
+        }
+      }
+    }
 
     function addResultToMessage (index, agentName, pricingOption, outboundLegTime, inboundLegTime){
       $scope.messages.$add({
@@ -232,17 +257,56 @@ angular.module('siahackatonApp')
         }
 
         if (text.indexOf('DISPLAY') > -1) {
-          selectedResults.forEach(function (selectedResult) {
+          selectedResults.forEach(function (selectedResult, index) {
             console.log(selectedResult);
-            addResultToMessage(selectedResult['id'], selectedResult['agentName'],
+            addResultToMessage(index, selectedResult['agentName'],
               selectedResult['pricingOption'], selectedResult['outboundLegTime'],
               selectedResult['inboundLegTime']);
           });
 
         }
+
+        if (text.indexOf('RESULT') > -1) {
+
+          displayResult(
+            calculateResult($scope.messages)
+          );
+
+        }
       }
     };
 
+    var displayResult = function (userVotingResults) {
+        var displayResult = {};
+        userVotingResults.forEach(function (userVote) {
+          displayResult[userVote.voted] = displayResult[userVote.voted] ?
+          displayResult[userVote.voted] + "," + userVote.name : userVote.name
+        });
+
+      for(var key in displayResult) {
+        $scope.messages.$add({
+          name: 'Flybot',
+          text: 'Option ' + key + ': ' + displayResult[key]
+        });
+      };
+
+    };
+
+
+    var calculateResult = function (messages) {
+      var userVotingResults = [];
+      messages.forEach(function(message){
+        if(message.text.match(/VOTED/g)){
+          var texts = message.text.split(' ');
+          userVotingResults.push({
+            name : message.name,
+            voted : texts[2]
+          })
+        }
+      });
+      return userVotingResults;
+
+    };
 
     var addUserColors = function () {
       $scope.messages.forEach(function (message) {
