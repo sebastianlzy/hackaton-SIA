@@ -22,16 +22,20 @@ angular
     $.material.options.autofill = false
     $.material.init();
     $routeProvider
-      .when('/', {
+      .when('/chat', {
         templateUrl: '../views/collab/main.html',
         controller: 'IndexCtrl'
       })
-      .when('/start', {
+      .when('/', {
         templateUrl: '../views/collab/start.html',
         controller: 'StartCtrl'
       })
+      .when('/countryCode', {
+        templateUrl: '../views/collab/countryCode.html',
+        controller: 'StartCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/chat'
       });
   })
   .config(['$httpProvider', function ($httpProvider) {

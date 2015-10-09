@@ -5,24 +5,66 @@
   <title></title>
 </head>
 <body>
-    <div class="form-group" name="buddy">
-        <input type="text" class="form-control floating-label" id="chatOwner" placeholder="Type in your name here" ng-model="buddy.chatOwner">
+<div class="wrapper">
+    <div class="jumbotron addBuddyIntro">
+      <h3> Hi there traveller!</h3>
+      Here's some simple instructions to help you get started!
+    </div>
+      <hr>
+    <div class="bs-component col-lg-4">
+      <div class="panel panel-primary ">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel primary</h3>
+        </div>
+        <div class="panel-body">
+          Step 1: Add buddies into discussion!
+        </div>
+      </div>
+    </div>
+    <div class="bs-component col-lg-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel primary</h3>
+        </div>
+        <div class="panel-body">
+          Step 2: Get FlyBot to help you by typing
+          "I want to go to [Airport Code] from [Outbound Date] to [Inbound Date]"
+        </div>
+      </div>
+    </div>
+    <div class="bs-component col-lg-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel primary</h3>
+        </div>
+        <div class="panel-body">
+          Step 3: Vote together to decide on the flight to catch with "Voting"
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
+
+    <div class="form-group" name="buddy">
         <input type="text" class="form-control floating-label" id="buddyName" placeholder="Type your travel buddy name here" ng-model="buddy.name">
     </div>
     <div class="form-group">
         <input type="number" class="form-control floating-label" id="buddyNumber" placeholder="Type your buddy's number here" data-hint="Only numbers allowed. (eg. 91234567)" ng-model="buddy.number">
     </div>
+
     <div class="form-group">
-        <input type="text" class="form-control" id="buddyMessage" placeholder="Here is your buddy url" ng-model="buddy.url" disabled>
+      <input type="text" class="form-control floating-label" id="chatOwner" placeholder="Type in your name here" ng-model="buddy.chatOwner">
+    </div>
+    <div class="form-group">
+      <span>Your chat URL:</span>
+      <input type="text" class="form-control" id="buddyMessage" ng-model="buddy.url" disabled>
     </div>
 
     <button class="btn btn-primary btn-raised" type="submit" ng-click="addBuddy(buddy)">Invite buddy to chat</button>
     <button class="btn btn-primary btn-raised" type="submit" ng-click="generateBuddyUrl(buddy)">Go to chat now!</button>
 
     <br/>
+  <div class="push"></div>
+</div>
 
 </body>
 </html>

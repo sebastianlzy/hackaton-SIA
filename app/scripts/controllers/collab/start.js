@@ -22,19 +22,19 @@ angular.module('siahackatonApp')
         $scope.buddies = [];
         $scope.buddy = {
             'name' : '',
-            'url' : 'http://localhost:9000/#/?name='
+            'url' : 'http://www.localhost:9000/#/chat/?name='
         };
 
         $scope.$watch('buddy.chatOwner', function () {
             var tempName=$scope.buddy['chatOwner'];
 
-            $scope.buddy['url'] = 'http://www.localhost:9000/#/?name=';
+            $scope.buddy['url'] = 'http://www.localhost:9000/#/chat/?name=';
             $scope.buddy['url'] += tempName;
         });
 
         $scope.generateBuddyUrl = function(buddy){
 
-            $scope.buddy['url'] = 'http://www.localhost:9000/#/?name=' + buddy.chatOwner;
+            $scope.buddy['url'] = 'http://www.localhost:9000/#/chat/?name=' + buddy.chatOwner;
             $window.open($scope.buddy['url'], '_blank');
         };
 

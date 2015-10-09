@@ -76,7 +76,7 @@ body {
   padding: 20px;
   box-shadow: 4px 5px 10px #BBB;
   margin-top: 25px;
-  height: 200px;
+  height: 270px;
   overflow: auto; }
 
 .top-pad-3 {
@@ -84,5 +84,22 @@ body {
 
 .name {
   color: #ff35c5; }
+
+.addBuddyIntro{
+  background-image: url('../images/sky.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  color: black !important;
+}
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+.footer, .push {
+  height: 4em;
+}
 
 /*# sourceMappingURL=main.css.map */
