@@ -279,14 +279,18 @@ angular.module('siahackatonApp')
     var displayResult = function (userVotingResults) {
         var displayResult = {};
         userVotingResults.forEach(function (userVote) {
-          displayResult[userVote.voted] = displayResult[userVote.voted] ?
-          displayResult[userVote.voted] + "," + userVote.name : userVote.name
+          displayResult[userVote.voted] = displayResult[userVote.voted] || [];
+          displayResult[userVote.voted].push(userVote.name);
+          displayResult[userVote.voted] = displayResult[userVote.voted].sort().reduce(
+            function(a, b){ if (b != a[0]) a.unshift(b); return a }, [])
         });
+
+
 
       for(var key in displayResult) {
         $scope.messages.$add({
           name: 'Flybot',
-          text: 'Option ' + key + ': ' + displayResult[key]
+          text: 'Option ' + key + ': ' + displayResult[key].join(", ")
         });
       };
 
