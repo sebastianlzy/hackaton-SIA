@@ -4,7 +4,13 @@
   color: #000;
   padding: 0.2em 0; }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
+  margin: 0 0 100px;
   padding: 0; }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -62,7 +68,8 @@ body {
 
   .footer {
     position: absolute;
-    bottom: 0px; }
+    bottom: 0px;
+    overflow: hidden; }
 
   /* Space out the masthead */
   .header {
@@ -92,14 +99,7 @@ body {
   opacity: 0.6;
   color: black !important;
 }
-.wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -4em;
-}
-.footer, .push {
-  height: 4em;
-}
+
+
 
 /*# sourceMappingURL=main.css.map */
