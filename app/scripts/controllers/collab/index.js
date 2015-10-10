@@ -70,7 +70,17 @@ angular.module('siahackatonApp')
     $scope.messages.$loaded(function () {
       scrollToBottom();
       addUserColors();
+      addCssToFlyBot();
     });
+
+    $scope.isFlyBot = function(name){
+      console.log(name);
+      if (name === 'Flybot' || name ==='Outbound' || name==='Inbound'){
+        return true;
+      }
+      return false;
+    };
+
 
     var getFromSkyScanner = function (iataCountry, outbound, inbound) {
 
@@ -93,12 +103,12 @@ angular.module('siahackatonApp')
         getTopFiveFlights(response);
 
       }).error(function (err) {
-        $timeout(function () {
-          $scope.messages.$add({
-            name : 'Flybot',
-            text : 'We are experiencing some difficulty. Please bear with us'
-          });
-        }, 2000)
+        //$timeout(function () {
+        //  $scope.messages.$add({
+        //    name : 'Flybot',
+        //    text : 'We are experiencing some difficulty. Please bear with us'
+        //  });
+        //}, 2000)
       });
     };
 
@@ -321,15 +331,21 @@ angular.module('siahackatonApp')
     };
 
     var getRandomRolor = function () {
-      var letters = '012345'.split('');
-      var color = '#';
-      color += letters[Math.round(Math.random() * 5)];
-      letters = '0123456789ABCDEF'.split('');
-      for (var i = 0; i < 5; i++) {
-        color += letters[Math.round(Math.random() * 15)];
-      }
-      return color;
+      var randomNumber = Math.round(Math.random() * 9);
+      return ['#3b7893','#a74d4b', '#287572', '#921922', '#9c4262',
+        '#172052', '#7a37ab', '#2c9c3f', '#a80858', '#927856'][randomNumber];
     };
+
+    //var getRandomRolor = function () {
+    //  var letters = '012345'.split('');
+    //  var color = '#';
+    //  color += letters[Math.round(Math.random() * 5)];
+    //  letters = '0123456789ABCDEF'.split('');
+    //  for (var i = 0; i < 5; i++) {
+    //    color += letters[Math.round(Math.random() * 15)];
+    //  }
+    //  return color;
+    //};
 
     var scrollToBottom = function () {
       $timeout(function () {
