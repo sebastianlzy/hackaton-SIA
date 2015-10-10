@@ -102,6 +102,7 @@ body {
 .flyfix::after {
     content: "";
     background: url('/images/desktop-wallpaper-tumblr1.jpg');
+    background-size: cover;
     opacity: 0.2;
     background-repeat: no-repeat;
     top: 0;
@@ -151,8 +152,16 @@ body {
     font-weight: 100;
 }
 
-.flybot:nth-child(3n + 3) {
+.flybot:nth-child(3n + 2) {
     font-weight: 100;
+}
+
+.panel-color{
+    background-color: #0b729c !important;
+}
+
+.panel{
+    height: 180px;
 }
 
 
@@ -173,5 +182,7 @@ body {
     opacity: 0.6;
     color: black !important;
 }
+
+
 
 /*# sourceMappingURL=main.css.map */
