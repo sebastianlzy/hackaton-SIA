@@ -70,7 +70,6 @@ angular.module('siahackatonApp')
     $scope.messages.$loaded(function () {
       scrollToBottom();
       addUserColors();
-      addCssToFlyBot();
     });
 
     $scope.isFlyBot = function(name){
