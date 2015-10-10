@@ -147,9 +147,16 @@ body {
     padding-top: 30px;
 }
 
-.flybot {
-    opacity: 0.9
+.flybot:nth-child(3n + 1) {
+    font-weight: 100;
 }
+
+.flybot:nth-child(3n + 3) {
+    font-weight: 100;
+}
+
+
+
 
 .flybot-message {
     color: #e80c7a !important;

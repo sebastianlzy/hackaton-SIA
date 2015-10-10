@@ -8,6 +8,7 @@
 
 <div class="flyfix"></div>
 <div class="message-box" id="message-box">
+
   <div ng-repeat="message in messages" ng-class="{ 'flybot': isFlyBot(message.name)}">
     <span ng-style="{color : usersColor[message.name]}">{{message.name}}</span> :
     <span ng-class="{ 'flybot-message': isFlyBot(message.name)}">{{message.text}}</span>
@@ -24,7 +25,10 @@
              placeholder="Type your message here" ng-model="message.text">
     </div>
   </div>
-  <button type="submit" ng-click="addMessage(message)" class="btn btn-primary btn-raised pull-right">Enter</button>
+  <button type="submit" ng-click="addMessage(message)" class="btn btn-primary btn-raised pull-right">
+    Send
+    <span class="glyphicon glyphicon-send"></span>
+  </button>
 </form>
 <div class="clearfix"></div>
 
